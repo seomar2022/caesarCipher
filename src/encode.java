@@ -1,7 +1,9 @@
+import java.util.Arrays;
+
 public class encode {
 
     public static void main(String[] args) {
-        System.out.println("Hello World");
+
         char [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         char [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -13,13 +15,16 @@ public class encode {
         for(int i = 0; i<plainAlphabet.length; i++){
             cipherAlphabet[i] = plainAlphabet[(i+n) % plainAlphabet.length];
         }
-        String plainText = "happy";
+        String plainText = "aaa";
         char [] plainTextToChar = plainText.toCharArray();
 
         for(char letter: plainTextToChar){
-            System.out.println(plainAlphabet.indexOf(letter));
+           //System.out.println(plainAlphabet.indexOf(letter));
+            System.out.println(letter);
+            System.out.println(Arrays.asList(plainAlphabet).indexOf(letter));
 
         }
+
         System.out.println(plainTextToChar);
         System.out.println(plainTextToChar[0]);
 
