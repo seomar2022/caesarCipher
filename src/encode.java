@@ -1,41 +1,44 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class encode {
 
     public static void main(String[] args) {
+        System.out.println(encode("abcz", 2));
+        System.out.println(encode("aaaz", 1));
+    }
 
-        char [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+    public static String encode(String plainText, int n){
+
+        //通常のアルファベット
+        Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        char [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+        //暗号化アルファベット
+        Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        System.out.println(plainAlphabet);
 
-        int n = 2;
 
+        //平文の各文字を辞書順でn文字分ずらして暗号文とする
         for(int i = 0; i<plainAlphabet.length; i++){
             cipherAlphabet[i] = plainAlphabet[(i+n) % plainAlphabet.length];
         }
-        String plainText = "aaa";
-        char [] plainTextToChar = plainText.toCharArray();
 
-        for(char letter: plainTextToChar){
-           //System.out.println(plainAlphabet.indexOf(letter));
-            System.out.println(letter);
-            System.out.println(Arrays.asList(plainAlphabet).indexOf(letter));
+        //for文を使うため、StringをCharArrayにする。
+        char [] plainTextToCharArray = plainText.toCharArray();
 
+        //indexOfを使うため、CharacterListをArrayListに変換
+        ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
+
+        //暗号化された文字を入れるcharArrayを作る。lengthはplainTextと同じ。
+        char [] encryptionArray = new char[plainText.length()];
+        int i = 0;
+
+        //平文から一つずつ文字を出して、その文字がplainAlphabetListの何番目に位置しているかを検索。
+        // そして、同じ位置のcipherAlphabetの文字をencryptionArrayに入れる。
+        for(char letter: plainTextToCharArray){
+            encryptionArray[i] = cipherAlphabet[plainAlphabetList.indexOf(letter)];
+            i++; //encryptionArrayの次の場所に移る。
         }
-
-        System.out.println(plainTextToChar);
-        System.out.println(plainTextToChar[0]);
-
-
-        System.out.println(plainAlphabet);
-        System.out.println(cipherAlphabet);
-
+        return new String(encryptionArray); //charArrayをStringに変換して、return
     }
-//
-//    public static boolean encode(String str, int n){
-//
-//        return true;
-//    }
 }
