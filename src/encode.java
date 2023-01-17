@@ -3,11 +3,6 @@ import java.util.Arrays;
 
 public class encode {
 
-    public static void main(String[] args) {
-        System.out.println(encode("abcz", 2));
-        System.out.println(encode("aaaz", 1));
-    }
-
     public static String encode(String plainText, int n){
 
         //通常のアルファベット
@@ -16,7 +11,6 @@ public class encode {
         //暗号化アルファベット
         Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-
 
         //平文の各文字を辞書順でn文字分ずらして暗号文とする
         for(int i = 0; i<plainAlphabet.length; i++){
@@ -36,7 +30,13 @@ public class encode {
         //平文から一つずつ文字を出して、その文字がplainAlphabetListの何番目に位置しているかを検索。
         // そして、同じ位置のcipherAlphabetの文字をencryptionArrayに入れる。
         for(char letter: plainTextToCharArray){
-            encryptionArray[i] = cipherAlphabet[plainAlphabetList.indexOf(letter)];
+            int j = plainAlphabetList.indexOf(letter);
+            if(j == -1) {
+                encryptionArray[i] = ' ';
+            }else {
+                encryptionArray[i] = cipherAlphabet[j];
+            }
+
             i++; //encryptionArrayの次の場所に移る。
         }
         return new String(encryptionArray); //charArrayをStringに変換して、return
