@@ -3,11 +3,18 @@ import java.util.Arrays;
 
 public class encode {
 
-    public static String encode(String plainText, int n){
+    ////member variables
+    //通常のアルファベット
+    Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-        //通常のアルファベット
-        Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+    //constructor
+    public encode(){
+
+    }
+
+    public Character [] switchAlphabetPosition(int n){
         //暗号化アルファベット
         Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -16,11 +23,16 @@ public class encode {
         for(int i = 0; i<plainAlphabet.length; i++){
             cipherAlphabet[i] = plainAlphabet[(i+n) % plainAlphabet.length];
         }
+        return  cipherAlphabet;
+    }
+
+    public String encode(String plainText, int n){
 
         //for文を使うため、StringをCharArrayにする。
         char [] plainTextToCharArray = plainText.toCharArray();
 
         //indexOfを使うため、CharacterListをArrayListに変換
+//        ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
         ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
 
         //暗号化された文字を入れるcharArrayを作る。lengthはplainTextと同じ。
@@ -34,7 +46,8 @@ public class encode {
             if(j == -1) {
                 encryptionArray[i] = ' ';
             }else {
-                encryptionArray[i] = cipherAlphabet[j];
+//                encryptionArray[i] = cipherAlphabet[j];
+                encryptionArray[i] = switchAlphabetPosition(n)[j];
             }
 
             i++; //encryptionArrayの次の場所に移る。
