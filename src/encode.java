@@ -14,6 +14,7 @@ public class encode {
 
     }
 
+    //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
     public Character [] switchAlphabetPosition(int n){
         //暗号化アルファベット
         Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -26,6 +27,7 @@ public class encode {
         return  cipherAlphabet;
     }
 
+    //n文字分ずらしたアルファベットを適応するmethod
     public String encode(String plainText, int n){
 
         //for文を使うため、StringをCharArrayにする。
