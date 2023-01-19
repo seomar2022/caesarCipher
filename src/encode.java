@@ -8,19 +8,17 @@ public class encode {
     Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
+    //暗号化アルファベット
+    Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
 
     //constructor
-    public encode(){
+    public encode(){}
 
-    }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
     public Character [] switchAlphabetPosition(int n){
-        //暗号化アルファベット
-        Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-
-        //平文の各文字を辞書順でn文字分ずらして暗号文とする
         for(int i = 0; i<plainAlphabet.length; i++){
             cipherAlphabet[i] = plainAlphabet[(i+n) % plainAlphabet.length];
         }
@@ -30,11 +28,7 @@ public class encode {
     //n文字分ずらしたアルファベットを適応するmethod
     public String encode(String plainText, int n){
 
-        //for文を使うため、StringをCharArrayにする。
-        char [] plainTextToCharArray = plainText.toCharArray();
-
         //indexOfを使うため、CharacterListをArrayListに変換
-//        ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
         ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
 
         //暗号化された文字を入れるcharArrayを作る。lengthはplainTextと同じ。
@@ -43,17 +37,23 @@ public class encode {
 
         //平文から一つずつ文字を出して、その文字がplainAlphabetListの何番目に位置しているかを検索。
         // そして、同じ位置のcipherAlphabetの文字をencryptionArrayに入れる。
-        for(char letter: plainTextToCharArray){
+        for(char letter: plainText.toCharArray()){  //for文を使うため、StringをCharArrayにする。
             int j = plainAlphabetList.indexOf(letter);
             if(j == -1) {
                 encryptionArray[i] = ' ';
             }else {
-//                encryptionArray[i] = cipherAlphabet[j];
                 encryptionArray[i] = switchAlphabetPosition(n)[j];
             }
 
             i++; //encryptionArrayの次の場所に移る。
         }
         return new String(encryptionArray); //charArrayをStringに変換して、return
+    }
+
+    //overloading
+    public String encode(String plainText){
+        //int nをランダムに
+
+        return "a";
     }
 }
