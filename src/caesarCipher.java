@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
-public class encode {
+public class caesarCipher {
 
     ////member variables
     //通常のアルファベット
@@ -14,8 +15,19 @@ public class encode {
 
 
     //constructor
-    public encode(){}
+    public caesarCipher(){}
 
+    public String encode(String plainText, int n){
+        return apply(plainText, switchAlphabetPosition(n));
+    }
+
+    //overloading
+    //int nが指定されなかった場合は１以上、２６以下の定数の中で、ランダムに適用する
+    public String encode(String plainText){
+        Random random = new Random();
+
+        return apply(plainText, switchAlphabetPosition(random.nextInt(plainAlphabet.length) + 1));
+    }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
     public Character [] switchAlphabetPosition(int n){
@@ -26,7 +38,7 @@ public class encode {
     }
 
     //n文字分ずらしたアルファベットを適応するmethod
-    public String encode(String plainText, int n){
+    public String apply(String plainText, Character [] cipherAlphabet){
 
         //indexOfを使うため、CharacterListをArrayListに変換
         ArrayList<Character> plainAlphabetList = new ArrayList<>(Arrays.asList(plainAlphabet));
@@ -42,7 +54,7 @@ public class encode {
             if(j == -1) {
                 encryptionArray[i] = ' ';
             }else {
-                encryptionArray[i] = switchAlphabetPosition(n)[j];
+                encryptionArray[i] = cipherAlphabet[j];
             }
 
             i++; //encryptionArrayの次の場所に移る。
@@ -50,10 +62,4 @@ public class encode {
         return new String(encryptionArray); //charArrayをStringに変換して、return
     }
 
-    //overloading
-    public String encode(String plainText){
-        //int nをランダムに
-
-        return "a";
-    }
 }
