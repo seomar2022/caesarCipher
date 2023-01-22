@@ -6,7 +6,7 @@ public class main {
         System.out.println(caesarCipher.encode("abcz", 2));
         System.out.println(caesarCipher.encode("aa az", 1));
         System.out.println(caesarCipher.encode("hello world", 0));
-        System.out.println(caesarCipher.encode("aaa bbb"));
+        System.out.println(caesarCipher.encode("Aaa bbb"));
     }
 
 

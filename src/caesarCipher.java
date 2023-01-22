@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Random;
 
 public class caesarCipher {
@@ -18,6 +19,8 @@ public class caesarCipher {
     public caesarCipher(){}
 
     public String encode(String plainText, int n){
+
+        plainText = plainText.toLowerCase();
         return apply(plainText, switchAlphabetPosition(n));
     }
 
@@ -25,6 +28,8 @@ public class caesarCipher {
     //int nが指定されなかった場合は１以上、２６以下の定数の中で、ランダムに適用する
     public String encode(String plainText){
         Random random = new Random();
+
+        plainText = plainText.toLowerCase();
 
         return apply(plainText, switchAlphabetPosition(random.nextInt(plainAlphabet.length) + 1));
     }
