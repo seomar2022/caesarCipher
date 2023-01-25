@@ -8,6 +8,7 @@ public class main {
 //        System.out.println(caesarCipher.encode("hello world", 0));
 //        System.out.println(caesarCipher.encode("Aaa bbb"));
         caesarCipher.decode("crrng");
+        System.out.println("aa");
     }
 
 
