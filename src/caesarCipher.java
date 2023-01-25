@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class caesarCipher {
 
+
+    //
     ////member variables
     //通常のアルファベット
     Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -19,7 +21,6 @@ public class caesarCipher {
     public caesarCipher(){}
 
     public String encode(String plainText, int n){
-
         plainText = plainText.toLowerCase();
         return apply(plainText, switchAlphabetPosition(n));
     }
@@ -32,6 +33,13 @@ public class caesarCipher {
         plainText = plainText.toLowerCase();
 
         return apply(plainText, switchAlphabetPosition(random.nextInt(plainAlphabet.length) + 1));
+    }
+
+    public String decode(String ciphertext){
+        for(int i=0; i<plainAlphabet.length; i++){
+            System.out.println(encode(ciphertext, i));
+        }
+        return "aa";
     }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
