@@ -8,43 +8,16 @@ import java.io.IOException;
 public class main {
 
     public static void main(String[] args) {
-        String URL = "https://en.dict.naver.com/#/search?query=askldjf;ae";
-        Document doc;
-
-        //https://jul-liet.tistory.com/209
+       String URL = "https://www.dictionary.com/browse/banana";
+       Document document;
         try {
-            doc = Jsoup.connect(URL).get();
-            System.out.println( doc.toString() );
-            Elements elem = doc.select(".section section_empty");
+            document = Jsoup.connect(URL).get();
+           System.out.println( document.toString() );
+            Elements elem = document.select("title");
             System.out.println(elem);
-
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        ///////////////////////////////////
-
-//        try {
-//            //対象となるurl
-//            String URL = "https://en.wiktionary.org/wiki/askdfj;asd";
-//
-//            // Connection
-//            Connection conn = Jsoup.connect(URL);
-//
-//            // HTML parsing
-//            Document html = conn.get(); // conn.post();指定したページの内容を持ってくる
-//
-//            // 4. HTML 出力
-//        //    System.out.println( html.toString() );
-//           // Elements elem = html.select(".plainlinks");
-//          //  System.out.println(elem);
-//            System.out.println(html.getElementsByClass(".plainlinks"));
-//
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         caesarCipher caesarCipher = new caesarCipher();
 
@@ -52,8 +25,8 @@ public class main {
 //        System.out.println(caesarCipher.encode("aa az", 1));
 //        System.out.println(caesarCipher.encode("hello world", 0));
 //        System.out.println(caesarCipher.encode("Aaa bbb"));
-        caesarCipher.decode("crrng");
-        System.out.println("aa");
+       // caesarCipher.decode("crrng");
+  //      System.out.println("aa");
     }
 
 
