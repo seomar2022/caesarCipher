@@ -1,4 +1,5 @@
 import org.jsoup.Connection;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -8,13 +9,16 @@ import java.io.IOException;
 public class main {
 
     public static void main(String[] args) {
-       String URL = "https://www.dictionary.com/browse/banana";
-       Document document;
+
+        String URL = "https://www.dictionary.com/browse/";
+        String word = "fsdfae";
+        URL += word;
         try {
-            document = Jsoup.connect(URL).get();
-           System.out.println( document.toString() );
-            Elements elem = document.select("title");
-            System.out.println(elem);
+
+            Document document = Jsoup.connect(URL).get();
+            System.out.println(document);
+        } catch (HttpStatusException httpStatusException){
+            System.out.println("辞書にない単語です。");
         } catch (IOException e) {
             e.printStackTrace();
         }
