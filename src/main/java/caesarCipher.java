@@ -1,3 +1,8 @@
+import org.jsoup.HttpStatusException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -5,8 +10,6 @@ import java.util.Random;
 
 public class caesarCipher {
 
-
-    //
     ////member variables
     //通常のアルファベット
     Character [] plainAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -37,9 +40,27 @@ public class caesarCipher {
 
     public String decode(String ciphertext){
         for(int i=0; i<plainAlphabet.length; i++){
-            System.out.println(encode(ciphertext, i));
+            String potentialAnswer = encode(ciphertext, i);
+            System.out.println(potentialAnswer);
+            searchForWord(potentialAnswer);
         }
         return "aa";
+    }
+
+    public boolean searchForWord(String potentialAnswer){
+        String URL = "https://www.dictionary.com/browse/";
+        String word = potentialAnswer;
+        URL += word;
+        try {
+            Jsoup.connect(URL).get();
+            System.out.println("↑○　辞書にある単語");
+        } catch (HttpStatusException httpStatusException){
+            //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
+            System.out.println("↑X　辞書にない単語");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
