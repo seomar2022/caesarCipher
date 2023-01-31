@@ -1,11 +1,3 @@
-import org.jsoup.Connection;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-
 public class main {
 
     public static void main(String[] args) {
@@ -14,8 +6,14 @@ public class main {
 //        System.out.println(caesarCipher.encode("apple", 2));
 //        System.out.println(caesarCipher.encode("aa az", 1));
 //        System.out.println(caesarCipher.encode("hello world", 0));
-//        System.out.println(caesarCipher.encode("Aaa bbb"));
-        caesarCipher.decode("crrng");
+//        System.out.println(caesarCipher.encode("banana"));
+//        System.out.println(caesarCipher.encode("kiwi"));
+//        System.out.println(caesarCipher.encode("hello world"));
+//        caesarCipher.decode("crrng"); //apple
+//        caesarCipher.decode("igug" ); //kiwi
+        caesarCipher.decode("czggj rjmgy"); //hello world
+//        caesarCipher.decode("ohwwf"); //happy
+
   //      System.out.println("aa");
     }
 
