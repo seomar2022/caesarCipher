@@ -18,32 +18,32 @@ public class main {
 //        caesarCipher.decode("igug" ); //kiwi
        // caesarCipher.decode("czggj rjmgy"); //hello world
 //          caesarCipher.decode("rjmgy czggj"); //world hello
-     //     caesarCipher.decode("lipps lettc asvph"); //hello happy world
+          caesarCipher.decode("lipps lettc asvph"); //hello happy world
 //        caesarCipher.decode("rovvy uytswk"); //hello kojima
 
 //        caesarCipher.decode("ohwwf"); //happy
 
   //      System.out.println("aa");
 
-        String potentialAnswer = "hello happy world";
-        String[] splitPotentialAnswer = potentialAnswer.split(" ");
-        int score = 0;
-        String URL = "https://www.dictionary.com/browse/";
-        for (int i = 0; i < splitPotentialAnswer.length; i++) {
-            String searchedWord = (splitPotentialAnswer[i]);
-            System.out.println(searchedWord);
-            try {
-                Jsoup.connect(URL).get();
-                score += 1;
-                System.out.println("↑○　辞書にある単語");
-            } catch (HttpStatusException httpStatusException) {
-                //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
-                System.out.println("↑X　辞書にない単語");
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-        }
+//        String potentialAnswer = "hello happy world";
+//        String[] splitPotentialAnswer = potentialAnswer.split(" ");
+//        int score = 0;
+//        String URL = "https://www.dictionary.com/browse/";
+//        for (int i = 0; i < splitPotentialAnswer.length; i++) {
+//            String searchedWord = splitPotentialAnswer[i];
+//            System.out.println(searchedWord);
+//            System.out.println("url: "+ URL + searchedWord);
+//            try {
+//                Jsoup.connect(URL + searchedWord).get();
+//                score += 1;
+//                System.out.println("↑○　辞書にある単語");
+//            } catch (HttpStatusException httpStatusException) {
+//                //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
+//                System.out.println("↑X　辞書にない単語");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
 

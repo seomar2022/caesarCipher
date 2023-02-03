@@ -49,32 +49,6 @@ public class caesarCipher {
         return "aa";
     }
 
-    //単語が辞書にあったら１を、なければ０をreturn
-    public int searchForWord(String potentialAnswer){
-        String[] splitPotentialAnswer = potentialAnswer.split(" ");
-        int score = 0;
-        String URL = "https://www.dictionary.com/browse/";
-        for (int i = 0; i < splitPotentialAnswer.length; i++) {
-            String searchedWord = (splitPotentialAnswer[i]);
-            System.out.println(searchedWord);
-            URL += searchedWord;
-            try {
-                Jsoup.connect(URL).get();
-                score += 1;
-                System.out.println("↑○　辞書にある単語");
-            } catch (HttpStatusException httpStatusException) {
-                //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
-                System.out.println("↑X　辞書にない単語");
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-        }
-        //平文の確率が高い順で、arrayに入れる。同じ確率であれば、アルファベット順に。
-
-        return score;
-    }
-
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
     public Character [] switchAlphabetPosition(int n){
         for(int i = 0; i<plainAlphabet.length; i++){
@@ -108,4 +82,27 @@ public class caesarCipher {
         return new String(encryptionArray); //charArrayをStringに変換して、return
     }
 
+    //単語が辞書にあったら１を、なければ０をreturn
+    public int searchForWord(String potentialAnswer){
+        String[] splitPotentialAnswer = potentialAnswer.split(" ");
+        int score = 0;
+        String URL = "https://www.dictionary.com/browse/";
+        for (int i = 0; i < splitPotentialAnswer.length; i++) {
+            String searchedWord = splitPotentialAnswer[i];
+            System.out.println(searchedWord);
+            try {
+                Jsoup.connect(URL + searchedWord).get();
+                score += 1;
+                System.out.println("↑○　辞書にある単語");
+            } catch (HttpStatusException httpStatusException) {
+                //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
+                System.out.println("↑X　辞書にない単語");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //平文の確率が高い順で、arrayに入れる。同じ確率であれば、アルファベット順に。
+
+        return score;
+    }
 }
