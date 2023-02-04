@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 public class caesarCipher {
@@ -31,22 +32,24 @@ public class caesarCipher {
     public String encode(String plainText){
         Random random = new Random();
         plainText = plainText.toLowerCase();
-
         return apply(plainText, switchAlphabetPosition(random.nextInt(plainAlphabet.length) + 1));
     }
 
+
     public String decode(String ciphertext){
-        String [] potentialAnswerArray = new String[plainAlphabet.length];
+        HashMap<String, Integer> potentialAnswerWithScore = new HashMap<>(); //点数と単語を一緒に入れとく
+
         for(int i=0; i<plainAlphabet.length; i++){
             String potentialAnswer = encode(ciphertext, i);
             //System.out.println(potentialAnswer);
-
-            System.out.println("total score: "+ searchForWord(potentialAnswer));
-            System.out.println("====================");
+            potentialAnswerWithScore.put(potentialAnswer, searchForWord(potentialAnswer));
+            //System.out.println("====================");
         }
-        //searchForWord(potentialAnswer)のreturnが高い順で
+        System.out.println(potentialAnswerWithScore);
 
-        return "aa";
+        //searchForWord(potentialAnswer)のreturnが高い順で整列する
+
+        return "";
     }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
@@ -82,21 +85,21 @@ public class caesarCipher {
         return new String(encryptionArray); //charArrayをStringに変換して、return
     }
 
-    //単語が辞書にあったら１を、なければ０をreturn
+    //単語が辞書にあったらscoreに１をたす。
     public int searchForWord(String potentialAnswer){
         String[] splitPotentialAnswer = potentialAnswer.split(" ");
         int score = 0;
         String URL = "https://www.dictionary.com/browse/";
         for (int i = 0; i < splitPotentialAnswer.length; i++) {
             String searchedWord = splitPotentialAnswer[i];
-            System.out.println(searchedWord);
+           // System.out.println(searchedWord);
             try {
                 Jsoup.connect(URL + searchedWord).get();
                 score += 1;
-                System.out.println("↑○　辞書にある単語");
+               // System.out.println("↑○　辞書にある単語");
             } catch (HttpStatusException httpStatusException) {
                 //IOExceptionの中にHttpStatusExceptionがあるので、IOExceptionより先にHttpStatusExceptionをcatch
-                System.out.println("↑X　辞書にない単語");
+              //  System.out.println("↑X　辞書にない単語");
             } catch (IOException e) {
                 e.printStackTrace();
             }
