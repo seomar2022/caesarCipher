@@ -59,6 +59,22 @@ public class main {
         for(Integer key : keySetList) {
             System.out.println("key : " + key + " value : " + map.get(key));
         }
+
+        /*
+        https://www.casleyconsulting.co.jp/blog/engineer/114/
+        一般の方法
+        IntFunc intFunc1 = new IntFunc(){
+          @Override
+          public int func(int x){
+            return x+x;
+          }
+        }
+        ラムダ式
+        IntFunc intFunc2 = (int x) -› {return x+x;};
+        関数名いらにない
+
+
+          */
     }
 
 
