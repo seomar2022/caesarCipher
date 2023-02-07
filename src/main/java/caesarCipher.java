@@ -2,10 +2,7 @@ import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class caesarCipher {
 
@@ -36,6 +33,7 @@ public class caesarCipher {
     }
 
 
+    //正解の可能性が高い順にreturn
     public String decode(String ciphertext){
         HashMap<String, Integer> potentialAnswerWithScore = new HashMap<>(); //点数と単語を一緒に入れとく
 
@@ -45,9 +43,20 @@ public class caesarCipher {
             potentialAnswerWithScore.put(potentialAnswer, searchForWord(potentialAnswer));
             //System.out.println("====================");
         }
-        System.out.println(potentialAnswerWithScore);
 
-        //searchForWord(potentialAnswer)のreturnが高い順で整列する
+        ////searchForWord(potentialAnswer)のreturnが高い順で整列する
+        List<String> keySetList = new ArrayList<>(potentialAnswerWithScore.keySet());//potentialAnswerWithScoreのkeyのみでArrayListを作くる
+
+        //keySetListの要素の大きさを比較し、大きい順でkeySetListに格納する
+        Collections.sort(keySetList, (o1, o2) -> (potentialAnswerWithScore.get(o2).compareTo(potentialAnswerWithScore.get(o1))));
+        for(String key : keySetList) {
+            System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
+        }
+
+        /*
+          Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+          keySetListを(o1, o2) -> (map.get(o2).compareTo(map.get(o1)))を基準に並び替える。
+          */
 
         return "";
     }
