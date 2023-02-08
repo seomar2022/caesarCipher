@@ -34,7 +34,7 @@ public class caesarCipher {
 
 
     //正解の可能性が高い順にreturn
-    public String decode(String ciphertext){
+    public String[] decode(String ciphertext){
         HashMap<String, Integer> potentialAnswerWithScore = new HashMap<>(); //点数と単語を一緒に入れとく
 
         for(int i=0; i<plainAlphabet.length; i++){
@@ -49,16 +49,24 @@ public class caesarCipher {
 
         //keySetListの要素の大きさを比較し、大きい順でkeySetListに格納する
         Collections.sort(keySetList, (o1, o2) -> (potentialAnswerWithScore.get(o2).compareTo(potentialAnswerWithScore.get(o1))));
-        for(String key : keySetList) {
-            System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
-        }
 
-        /*
-          Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+        String[] sortedPotentialAnswer = new String[plainAlphabet.length];
+
+        int i = 0;
+
+        for(String key : keySetList) {
+            //System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
+
+            sortedPotentialAnswer[i] = key;
+            i++;
+
+        }
+        /*Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
           keySetListを(o1, o2) -> (map.get(o2).compareTo(map.get(o1)))を基準に並び替える。
           */
 
-        return "";
+        System.out.println(Arrays.toString(sortedPotentialAnswer));
+        return sortedPotentialAnswer;
     }
 
     //平文の各文字を辞書順でn文字分ずらして暗号文とするmethod
