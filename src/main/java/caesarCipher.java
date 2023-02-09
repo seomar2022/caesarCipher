@@ -15,7 +15,6 @@ public class caesarCipher {
     Character [] cipherAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-
     //constructor
     public caesarCipher(){}
 
@@ -53,13 +52,10 @@ public class caesarCipher {
         String[] sortedPotentialAnswer = new String[plainAlphabet.length];
 
         int i = 0;
-
         for(String key : keySetList) {
             //System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
-
             sortedPotentialAnswer[i] = key;
             i++;
-
         }
         /*Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
           keySetListを(o1, o2) -> (map.get(o2).compareTo(map.get(o1)))を基準に並び替える。
