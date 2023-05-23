@@ -9,7 +9,6 @@ class CaesarCipherController {
     //member variables
     public static final int ALPHABET_COUNT = 26;
 
-
     //constructor
     public CaesarCipherController(){}
 
@@ -53,7 +52,7 @@ class CaesarCipherController {
 
         int i = 0;
         for(String key : keySetList) {
-            //System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
+            System.out.println("key: " + key + "| value: " + potentialAnswerWithScore.get(key));
             sortedPotentialAnswers[i] = key;
             i++;
         }
@@ -77,7 +76,20 @@ class CaesarCipherController {
         // そして、同じ位置のcipherAlphabetの文字をencryptionArrayに入れる。
         for(char letter: plainText.toCharArray()){  //for文を使うため、StringをCharArrayにする。
 
-            encryptionArray[i] = (char)((int)letter + shift);
+            int unicode = 0;
+            if((int)letter != 32){//letterが空白ではない場合
+                unicode = (int)letter + shift;
+                while (unicode>122){
+                    unicode-=26;
+
+                }
+            }else {
+                unicode =32;
+            }
+
+        //    System.out.println("unicode->"+(char)unicode);
+
+            encryptionArray[i] = (char)unicode;
 
             i++; //encryptionArrayの次の場所に移る。
         }
